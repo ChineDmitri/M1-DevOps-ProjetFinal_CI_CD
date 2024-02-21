@@ -71,6 +71,10 @@ docker restart mysql-dev
 
 #### 🚀 Développement & Test 🧪📊  :
 
+```bash
+npm install
+```
+
 Lancement des tests avec Jest en local (conteneur mysql-dev démarré) :
 
 ```bash
@@ -100,13 +104,11 @@ npm run start:dev
 cd client
 ```
 
-Lorsque vous créez une branche **fix/feature/release**, le projet est construit dans un répertoire de volume Docker à l'aide de commande : 
+#### 🚀 Développement & Test 🧪📊  :
 
 ```bash
-ng build --configuration=production --output-path=../volume
+npm install
 ```
-
-#### 🚀 Développement & Test 🧪📊  :
 
 Lancement en mode de developpement : 
 
@@ -117,6 +119,14 @@ npm run start
 Linting du code : 
 ```bash
 npm run lint
+```
+
+------------
+
+Lorsque vous créez une branche **fix/feature/release**, le projet est construit dans un répertoire de volume Docker à l'aide de commande : 
+
+```bash
+ng build --configuration=production --output-path=../volume
 ```
 
 
