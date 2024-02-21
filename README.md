@@ -43,7 +43,7 @@ Lorsque *Pull Request* est fermée sur la branche **main**  le workflow **Versio
 Lorsqu'une *Pull Request* est fermée sur la branche **main**, le *workflow* "**Version Bump and Merge**" exécute d'abord le *job* ** hadolint** pour vérifier les Dockerfile à l'aide de Hadolint. Ensuite, il passe au *job* **version-bump** pour effectuer les opérations de mise à jour de version et création de tag pour ce version.
 
 ## ⚙️ Configuration côté back-end :
-La configuration pour le développement et la production se trouve dans le fichier .env. Assurez-vous de configurer votre base de données dans le fichier Dockerfile.bdd.
+La configuration pour le développement et la production se trouve dans le fichier 📇 **.env**. Assurez-vous de configurer votre base de données dans le fichier Dockerfile.bdd.
 
 *Création d'une image pour le développement local :*
 
