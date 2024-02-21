@@ -1,3 +1,4 @@
+
 name: Lint for front
 
 on:
@@ -20,14 +21,24 @@ jobs:
         with:
           node-version: 18.16
 
-      - name: Change directory to client
-        run: cd client
+      - name: Install dependencies and lint code
+        run: cd PIF_PAF-front
 
-      - name: PWD
+      - name: run 2
         run: pwd
-
-      - name: Install dependencies
+      
+      - name: run 3
         run: npm install
+        
+      - name: run 4
+        run: npm run lint 
+          
 
-      - name: Run lint
-        run: npm run lint
+      # - name: Run Lint 
+      #   run: |
+      #     cd PIF_PAF-front
+      #     pwd
+          
+      
+      
+    

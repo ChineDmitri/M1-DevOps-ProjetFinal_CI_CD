@@ -23,7 +23,7 @@ export class ApiService {
         map((response: any) => {
           if (response.message) return response.message;
           else return null;
-        }),
+        })
       );
   }
 }
