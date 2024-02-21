@@ -1,0 +1,39 @@
+FROM node:18.16 AS build-stage
+
+# WORKDIR ./PIF_PAF-front/app
+
+# # Copiez les fichiers nécessaires
+# COPY package*.json ./
+
+# # Installez les dépendances
+# RUN npm install
+
+# # Copiez tout le reste de l'application
+# COPY . .
+
+# RUN ./node_modules/.bin/ng build --configuration=production --output-path=./app/dist
+
+# # Ajoutez cette ligne pour copier le dossier dist à l'extérieur du conteneur
+# CMD cp -r dist /app/dist
+
+WORKDIR /app
+
+# Copiez les fichiers nécessaires
+COPY package*.json ./
+
+# Installez les dépendances
+RUN npm install
+
+
+# Utilisez le chemin complet du binaire ng pour la construction
+RUN ng build --configuration=production --output-path=./app/dist
+
+# Copiez tout le reste de l'application
+COPY . .
+
+
+
+VOLUME /app/dist
+
+# Ajoutez cette ligne pour copier le dossier dist à l'extérieur du conteneur
+CMD cp -r dist /app/dist
