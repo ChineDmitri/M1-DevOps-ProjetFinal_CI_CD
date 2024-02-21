@@ -7,7 +7,7 @@
 |  TypeORM 10 | - | - |
 
 
-![WORKFLOW](https://github.com/ChineDmitri/M1_AL_ProjetFinal_Equipe1/blob/main/V.3.1.diagramme.png)
+![WORKFLOW](https://github.com/ChineDmitri/M1-DevOps-ProjetFinal_CI_CD/blob/main/V.3.1.diagramme.png)
 
 Tout le développement se base sur les branches de fix, de feature et de release avec les noms de branche suivants :
 
