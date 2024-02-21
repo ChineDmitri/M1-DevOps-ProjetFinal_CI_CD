@@ -18,7 +18,7 @@ jobs:
           MYSQL_DB_HOST: localhost
           MYSQL_DB_PORT: 3310
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: rdv
+          MYSQL_DATABASE: create_user_db
           MYSQL_USER: student
           MYSQL_PASSWORD: student
         ports:
