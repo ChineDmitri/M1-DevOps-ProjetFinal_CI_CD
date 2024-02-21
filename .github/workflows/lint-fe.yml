@@ -23,6 +23,9 @@ jobs:
       - name: Change directory to client
         run: cd client
 
+      - name: PWD
+        run: pwd
+
       - name: Install dependencies
         run: npm install
 
