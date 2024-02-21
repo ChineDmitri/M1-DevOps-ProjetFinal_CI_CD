@@ -22,7 +22,7 @@ jobs:
           node-version: 18.16
 
       - name: Install dependencies and lint code
-        run: cd PIF_PAF-front
+        run: cd client
 
       - name: run 2
         run: pwd
