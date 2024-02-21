@@ -1,0 +1,34 @@
+name: Lint for front
+
+on:
+  push:
+    branches:
+      - "fe_fix_*"
+      - "fe_feature_*"
+      - "fe_release_*"
+
+jobs:
+  lint-code:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.16
+
+      - name: Change directory to client
+        run: cd PIF_PAF-front
+      
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Run lint
+        run: npm run lint 
+          
+      
+      
+    

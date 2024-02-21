@@ -1,0 +1,110 @@
+name: Version Bump and Merge
+
+on:
+  pull_request:
+    branches:
+      - "main"
+    types: [closed]
+
+jobs:
+  hadolint:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker images
+        run: docker-compose build
+
+      - name: Install Hadolint
+        run: docker pull hadolint/hadolint
+
+      - name: Lint Dockerfiles
+        run: docker run --rm -i hadolint/hadolint < Dockerfile.app
+
+      - name: Lint Dockerfiles for database
+        run: docker run --rm -i hadolint/hadolint < Dockerfile.bdd
+
+  version-bump:
+    runs-on: ubuntu-22.04
+
+    needs: hadolint
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Check if pull request was merged
+        run: |
+          if [ "${{ github.event.pull_request.merged }}" == "true" ]; then
+            echo "Pull request was merged, go to bump version."
+            exit 0
+          else
+            echo "Pull request was not merged, no bump version."
+            exit 1
+          fi
+
+      - name: Determine version bump
+        id: version
+        run: |
+          BRANCH_NAME=$(echo ${{ github.head_ref }} | tr '[:upper:]' '[:lower:]')
+          if [[ $BRANCH_NAME == "fix_"* ]]; then
+            echo "bump=patch" >> $GITHUB_ENV
+          elif [[ $BRANCH_NAME == "feature_"* ]]; then
+            echo "bump=minor" >> $GITHUB_ENV
+          elif [[ $BRANCH_NAME == "release_"* ]]; then
+            echo "bump=major" >> $GITHUB_ENV
+          else
+            echo "Unsupported branch naming convention: $BRANCH_NAME"
+            exit 1
+          fi
+
+      - name: Bump version + check version in docker container from image and after update Docker image
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+          # Run npm version after ensuring a clean working directory
+          npm version ${{ env.bump }} -m "Bump version in package.json %s"
+
+          docker-compose up -d
+          docker-compose exec -T node-js-app sh -c "while [ \"\$(curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/info)\" != \"200\" ]; do sleep 5; done"
+          API_RESPONSE=$(docker-compose exec -T node-js-app curl -s http://localhost:3000/info)
+          PACKAGE_VERSION=$(docker-compose exec -T node-js-app node -p "require('./package.json').version")
+          if [ "$API_RESPONSE" != "$PACKAGE_VERSION" ]; then
+            echo "Error: API response ($API_RESPONSE) does not match package.json version ($PACKAGE_VERSION)"
+            exit 1
+          fi
+
+          git push origin main
+
+          # # Update Docker image version in docker-compose
+          sed -i "s|image: \"create-user-app:.*|image: \"create-user-app:$(node -p "require('./package.json').version")\"|" docker-compose.yml
+          cat docker-compose.yml
+
+          # # Add change
+          git add docker-compose.yml
+
+          cd client
+          npm install
+          ./node_modules/.bin/ng build --configuration=production --output-path=../volume
+          git add .
+
+          cd ..
+
+          git commit -m "Bump version in docker-compose.yml to $(node -p "require('./package.json').version") + build volumes"
+
+          git push origin main
+
+          git tag -a "APP_v$(node -p "require('./package.json').version")" -m "App version $(node -p "require('./package.json').version")"
+          git push origin "APP_v$(node -p "require('./package.json').version")"
+
+      
