@@ -11,10 +11,10 @@ on:
 
 jobs:
   lint-code:
-    uses: ChineDmitri/M1-DevOps-ProjetFinal_CI_CD/.github/workflows/lint-fe.yml
+    uses: ChineDmitri/M1-DevOps-ProjetFinal_CI_CD/.github/workflows/lint-fe.yml@mainline
 
   back-end_test-and-coverage:
-    uses: ChineDmitri/M1-DevOps-ProjetFinal_CI_CD/.github/workflows/test-coverage-be.yml
+    uses: ChineDmitri/M1-DevOps-ProjetFinal_CI_CD/.github/workflows/test-coverage-be.yml@mainline
 
   check-fix-featur-release :
     runs-on: ubuntu-22.04
