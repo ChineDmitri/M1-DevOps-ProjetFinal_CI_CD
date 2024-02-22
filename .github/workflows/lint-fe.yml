@@ -20,18 +20,15 @@ jobs:
         with:
           node-version: 18.16
 
-      - name: Change directory to client, install & lint
+      - name: Change directory to client
         run: |
           cd client
-          pwd
-          npm install
-          npm run lint
 
-      # - name: PWD
-      #   run: pwd
+      - name: PWD
+        run: pwd
 
-      # - name: Install dependencies
-      #   run: npm install
+      - name: Install dependencies
+        run: npm install
 
-      # - name: Run lint
-      #   run: npm run lint
+      - name: Run lint
+        run: npm run lint
