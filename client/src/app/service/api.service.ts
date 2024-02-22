@@ -6,7 +6,7 @@ import { map } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  private _apiUrl = 'http://localhost:3000/';
+  private _apiUrl = 'http://localhost:3000/user';
 
   constructor(private _http: HttpClient) {}
 
