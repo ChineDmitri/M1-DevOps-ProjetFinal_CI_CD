@@ -13,12 +13,4 @@ export class AppController {
     console.log('hello')
     return this.appService.getVersion();
   }
-
-  // @Get()
-  // getStatic(): any {
-  //   const staticPath = path.join(__dirname, '../../volume/browser/');
-  //   console.log(path);
-  //   console.log(staticPath);
-  //   serveStatic(staticPath);
-  // }
 }
