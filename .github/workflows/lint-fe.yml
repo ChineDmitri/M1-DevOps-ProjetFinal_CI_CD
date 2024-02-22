@@ -12,11 +12,19 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: Change directory to client and install dependencies
-        run: |
-          pwd
-          cd client
-          npm install
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.16
+
+      - name: Change directory to client
+        run: cd client
+      
+      - name: Install dependencies
+        run: npm install
+        
       - name: Run lint
-        run: npm run lint
-        working-directory: client
+        run: npm run lint 
