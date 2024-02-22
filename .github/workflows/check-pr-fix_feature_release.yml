@@ -18,7 +18,7 @@ jobs:
 
   check-fix-featur-release :
     runs-on: ubuntu-22.04
-    needs: 
+    needs:
       - lint-code
       - back-end_test-and-coverage
 
