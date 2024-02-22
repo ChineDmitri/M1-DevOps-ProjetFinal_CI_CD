@@ -13,9 +13,7 @@ jobs:
 
     steps:
       - name: Change directory to client and install dependencies
-        run: |
-          cd client
-          pwd
-          npm install
+        run: npm install
       - name: Run lint
         run: npm run lint
+        working-directory: client
