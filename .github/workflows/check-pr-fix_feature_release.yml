@@ -10,14 +10,20 @@ on:
       - closed
 
 jobs:
-  check-fix-featur-release :
+  lint-code:
+    uses: ./.github/workflows/lint-fe.yml
+
+  back-end_test-and-coverage:
+    uses: ./.github/workflows/test-coverage-be.yml
+
+  check-fix-feature-release:
     runs-on: ubuntu-22.04
-    needs: 
+    needs:
       - lint-code
       - back-end_test-and-coverage
 
     steps:
-      - name: Réutilisation lint-code et back-end_test-and-coverage
+      - name: Reuse lint-code and back-end_test-and-coverage
         run: | 
           echo "Ok"
           exit 0
