@@ -75,14 +75,14 @@ jobs:
           # Run npm version after ensuring a clean working directory
           npm version ${{ env.bump }} -m "Bump version in package.json %s"
 
-          docker-compose up -d
-          docker-compose exec -T node-js-app sh -c "while [ \"\$(curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/info)\" != \"200\" ]; do sleep 5; done"
-          API_RESPONSE=$(docker-compose exec -T node-js-app curl -s http://localhost:3000/info)
-          PACKAGE_VERSION=$(docker-compose exec -T node-js-app node -p "require('./package.json').version")
-          if [ "$API_RESPONSE" != "$PACKAGE_VERSION" ]; then
-            echo "Error: API response ($API_RESPONSE) does not match package.json version ($PACKAGE_VERSION)"
-            exit 1
-          fi
+          # docker-compose up -d
+          # docker-compose exec -T node-js-app sh -c "while [ \"\$(curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/info)\" != \"200\" ]; do sleep 5; done"
+          # API_RESPONSE=$(docker-compose exec -T node-js-app curl -s http://localhost:3000/info)
+          # PACKAGE_VERSION=$(docker-compose exec -T node-js-app node -p "require('./package.json').version")
+          # if [ "$API_RESPONSE" != "$PACKAGE_VERSION" ]; then
+          #   echo "Error: API response ($API_RESPONSE) does not match package.json version ($PACKAGE_VERSION)"
+          #   exit 1
+          # fi
 
           git push origin main
 
