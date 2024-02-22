@@ -16,6 +16,7 @@ jobs:
   back-end_test-and-coverage:
     uses: ChineDmitri/M1-DevOps-ProjetFinal_CI_CD/.github/workflows/test-coverage-be.yml@main
 
+
   check-fix-featur-release :
     runs-on: ubuntu-22.04
     needs:
@@ -32,6 +33,7 @@ jobs:
             echo "Pull request was not merged, no bump version."
             exit 1
           fi
+
       - name: Réutilisation lint-code et back-end_test-and-coverage
         run: | 
           echo "Ok"
