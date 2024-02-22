@@ -96,9 +96,9 @@ jobs:
           cd client
           npm install
           ./node_modules/.bin/ng build --configuration=production --output-path=../volume
-          git add .
-
           cd ..
+          
+          git add .
 
           git commit -m "Bump version in docker-compose.yml to $(node -p "require('./package.json').version") + build volumes"
 
