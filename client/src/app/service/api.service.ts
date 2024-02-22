@@ -10,12 +10,6 @@ export class ApiService {
 
   constructor(private _http: HttpClient) {}
 
-  // Tentative lint
-  // Tentative lint 2
-  // Tentative lint 3
-  // Tentative lint 4
-  // Tentative lint 5
-
   envoyerInfo(lastname: string, firstname: string): any {
     return this._http
       .post(this._apiUrl, { firstName: firstname, lastName: lastname })
