@@ -1,0 +1,23 @@
+name: Check PR [fix_, feature_, release_]
+
+on:
+  pull_request:
+    branches:
+      - 'fix_*'
+      - 'feature_*'
+      - 'release_*'  
+    types:
+      - closed
+
+jobs:
+  check-fix-featur-release :
+    runs-on: ubuntu-22.04
+    needs: 
+      - lint-code
+      - back-end_test-and-coverage
+
+    steps:
+      - name: Réutilisation lint-code et back-end_test-and-coverage
+        run: | 
+          echo "Ok"
+          exit 0
