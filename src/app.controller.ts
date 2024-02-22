@@ -10,7 +10,6 @@ export class AppController {
 
   @Get('/info')
   getVersion(): string {
-    console.log('hello')
     return this.appService.getVersion();
   }
 }
