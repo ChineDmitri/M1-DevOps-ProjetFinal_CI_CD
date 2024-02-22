@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  node-js-app:
+    container_name: "create-user_app"
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    image: "create-user-app:1.0.5"
+    ports:
+      - "3000:3000"
+    networks:
+      - create-user-network
+    depends_on:
+      - mysql-db
+    volumes:
+      - /volume/browser:/volume/browser
+      
+  mysql-db:
+    container_name: "create-user_bdd"
+    build:
+      context: .
+      dockerfile: Dockerfile.bdd
+    image: "create-user_bdd:0.0.1"
+    expose:
+      - "3306"
+    networks:
+      - create-user-network
+      
+networks:
+  create-user-network:
+    driver: bridge
+
+
+    

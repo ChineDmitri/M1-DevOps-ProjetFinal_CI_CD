@@ -20,10 +20,13 @@ jobs:
         with:
           node-version: 18.16
 
+      - name: Install dependencies in root
+        run: npm install
+
       - name: Change directory to client
-        run: cd PIF_PAF-front
+        run: cd client
       
-      - name: Install dependencies
+      - name: Install dependencies in client
         run: npm install
         
       - name: Run lint
