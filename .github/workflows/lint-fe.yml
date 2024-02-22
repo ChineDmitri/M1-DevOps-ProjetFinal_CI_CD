@@ -21,15 +21,20 @@ jobs:
           node-version: 18.16
 
       - name: Change directory to client
-        run: cd client
-
-      - name: PWD
-        run: pwd
-
+        run: cd PIF_PAF-front
+      
       - name: Install dependencies
         run: npm install
-        working-directory: ./   # Set the working directory back to the root
-
+        
       - name: Run lint
-        run: npm run lint
-        working-directory: ./client
+        run: npm run lint 
+          
+
+      # - name: Run Lint 
+      #   run: |
+      #     cd PIF_PAF-front
+      #     pwd
+          
+      
+      
+    
