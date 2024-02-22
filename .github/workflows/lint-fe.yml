@@ -22,9 +22,14 @@ jobs:
 
       - name: Change directory to client
         run: cd client
-      
+
+      - name: PWD
+        run: pwd
+
       - name: Install dependencies
         run: npm install
-        
+        working-directory: ./   # Set the working directory back to the root
+
       - name: Run lint
-        run: npm run lint 
+        run: npm run lint
+        working-directory: ./client
