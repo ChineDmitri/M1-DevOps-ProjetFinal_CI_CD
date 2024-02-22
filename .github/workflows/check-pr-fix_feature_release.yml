@@ -23,6 +23,15 @@ jobs:
       - back-end_test-and-coverage
 
     steps:
+      - name: Check if pull request was merged
+        run: |
+          if [ "${{ github.event.pull_request.merged }}" == "true" ]; then
+            echo "Pull request was merged, go to bump version."
+            exit 0
+          else
+            echo "Pull request was not merged, no bump version."
+            exit 1
+          fi
       - name: Reuse lint-code and back-end_test-and-coverage
         run: | 
           echo "Ok"
