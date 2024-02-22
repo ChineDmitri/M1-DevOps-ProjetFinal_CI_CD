@@ -12,7 +12,6 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-<<<<<<< HEAD
       - name: Change directory to client and install dependencies
         run: |
           pwd
@@ -21,28 +20,3 @@ jobs:
       - name: Run lint
         run: npm run lint
         working-directory: client
-=======
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.16
-
-      - name: Change directory to client, install & lint
-        run: |
-          cd client
-          pwd
-          npm install
-          npm run lint
-
-      # - name: PWD
-      #   run: pwd
-
-      # - name: Install dependencies
-      #   run: npm install
-
-      # - name: Run lint
-      #   run: npm run lint
->>>>>>> be7fa84 (update workflow)
