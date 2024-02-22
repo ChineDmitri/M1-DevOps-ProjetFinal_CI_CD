@@ -11,6 +11,7 @@ export class ApiService {
   constructor(private _http: HttpClient) {}
 
   envoyerInfo(lastname: string, firstname: string): any {
+    console.log(lastname, " | ", firstname);
     return this._http
       .post(this._apiUrl, { firstName: firstname, lastName: lastname })
       .pipe(
