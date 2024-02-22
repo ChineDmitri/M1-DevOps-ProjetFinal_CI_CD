@@ -1,4 +1,4 @@
-name: Check PR [fix_, feature_, release_]
+name: Check PR for fix_ feature_ release_
 
 on:
   pull_request:
