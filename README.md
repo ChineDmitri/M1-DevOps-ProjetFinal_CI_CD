@@ -43,12 +43,12 @@ Lorsque *Pull Request* est fermée sur la branche **main**  le workflow **Versio
 Lorsqu'une *Pull Request* est fermée sur la branche **main**, le *workflow* "**Version Bump and Merge**" exécute d'abord le *job* ** hadolint** pour vérifier les Dockerfile à l'aide de Hadolint. Ensuite, il passe au *job* **version-bump** pour effectuer les opérations de mise à jour de version et création de tag pour ce version.
 
 ## ⚙️ Configuration côté back-end :
-La configuration pour le développement et la production se trouve dans le fichier 📇 **.env**. Assurez-vous de configurer votre base de données dans le fichier Dockerfile.bdd.
+La configuration pour le développement et la production se trouve dans le fichier 📇 **.env**. Assurez-vous de configurer votre base de données dans le fichier **Dockerfile.bdd** ou le fichier **.env**.
 
 *Création d'une image pour le développement local :*
 
 ```bash
-docker build -t bdd:dev -f Dockerfile.bdd .
+docker image build --tag=bdd:dev --file=Dockerfile.bdd .
 ```
 
 Lancement du conteneur à partir de l'image MySQL pour le développement :
@@ -67,6 +67,12 @@ docker start mysql-dev
 ```
 ```bash
 docker restart mysql-dev
+```
+
+Installation des dépendances du back-end à la racine du projet :
+
+```bash
+npm install
 ```
 
 #### 🚀 Développement & Test 🧪📊  :
@@ -94,16 +100,22 @@ npm run start:dev
 
 ## ⚙️ Configuration côté front-end:
 
-👉 Passer dans le repertoir 📂 **clien ** :
+👉 Passer dans le repertoire 📂 **client** :
 
 ```bash
 cd client
 ```
 
+Installation des dépendances du front-end : 
+
+```bash
+npm install
+```
+
 Lorsque vous créez une branche **fix/feature/release**, le projet est construit dans un répertoire de volume Docker à l'aide de commande : 
 
 ```bash
-ng build --configuration=production --output-path=../volume
+npx ng build --configuration=production --output-path=../volume
 ```
 
 #### 🚀 Développement & Test 🧪📊  :
