@@ -69,7 +69,23 @@ docker start mysql-dev
 docker restart mysql-dev
 ```
 
-Installation des dépendances du back-end à la racine du projet :
+👉 Passer dans le repertoire 📂 **client** :
+
+🌟 Installation des dépendances du front-end : 
+
+```bash
+cd client
+```
+
+```bash
+npm install
+```
+
+🌟 Installation des dépendances du back-end (pour assurer le bon fonctionement de l'ensembme de l'app) : 
+
+```bash
+cd ..
+```
 
 ```bash
 npm install
@@ -102,11 +118,21 @@ npm run start:dev
 
 👉 Passer dans le repertoire 📂 **client** :
 
+🌟 Installation des dépendances du front-end : 
+
 ```bash
 cd client
 ```
 
-Installation des dépendances du front-end : 
+```bash
+npm install
+```
+
+🌟 Installation des dépendances du back-end (pour assurer le bon fonctionement de l'ensembme de l'app) : 
+
+```bash
+cd ..
+```
 
 ```bash
 npm install
