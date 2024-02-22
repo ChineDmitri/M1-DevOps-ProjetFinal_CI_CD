@@ -25,22 +25,17 @@ jobs:
 
       - name: run 2
         run: pwd
-      
+
       - name: run 3
         run: npm install
 
       - name: run 2
         run: pwd
-        
-      - name: run 4
-        run: npm run lint 
-          
 
-      # - name: Run Lint 
+      - name: run 4
+        run: npm run lint
+
+      # - name: Run Lint
       #   run: |
       #     cd client
       #     pwd
-          
-      
-      
-    
